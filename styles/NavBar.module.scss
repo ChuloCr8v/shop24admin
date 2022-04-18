@@ -1,0 +1,51 @@
+@import './globals.module.scss';
+
+.navbar {
+  // border: 2px red solid ;
+  padding: 10px 0;
+  width: 100%;
+  @include flex;
+  background: white;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.17);
+  position: relative;
+  z-index: 999;
+}
+
+.container {
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.left_side,
+.right_side,
+.icon_container {
+  @include flex;
+  flex-direction: row;
+  * + * {
+    margin-left: 20px;
+  }
+}
+
+.icon_wrapper {
+  position: relative;
+}
+
+.notice_count {
+  @include flex;
+  background: green;
+  height: 12px;
+  width: 12px;
+  font-size: 10px;
+  border-radius: 50%;
+  color: white;
+  position: absolute;
+  top: -18px;
+  right: -5px;
+}
+
+.avatar {
+  img {
+    border: 2px red solid;
+    border-radius: 50%;
+  }
+}
