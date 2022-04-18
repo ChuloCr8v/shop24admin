@@ -3,9 +3,10 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import NavBar from '../components/NavBar'
 import SideBar from '../components/SideBar'
+import Home from '../components/Home'
 import {useState, useEffect} from 'react'
 
-export default function Home() {
+export default function Index() {
   
   const [showSideBar, setShowSideBar] = useState(false)
   
@@ -20,7 +21,7 @@ export default function Home() {
       <main className={styles.wrapper} >
         <SideBar showSideBar={showSideBar} />
         <div className={styles.main}>
-          <h1> others </h1>
+          <Home />
         </div>
       </main>
     </div>

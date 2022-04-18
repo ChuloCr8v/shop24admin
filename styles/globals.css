@@ -28,3 +28,7 @@ h3,
 span {
   line-height: 1.3pt
 }
+
+img {
+  max-width: 100%;
+}

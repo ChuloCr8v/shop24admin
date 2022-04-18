@@ -1,0 +1,38 @@
+@import 'globals.module.scss';
+
+
+.widget_sm {
+  @include flex;
+  margin: 2rem 0;
+}
+
+.wrapper {
+  width: 100%;
+  @include flex;
+}
+
+.user {
+  @include flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  border-radius: 10px;
+  padding: 10px 20px;
+}
+
+
+.user_img {
+  border-radius: 50%;
+}
+
+.name {
+  font-size: 1.2em;
+  font-weight: 600;
+}
+
+.job {
+  color: grey;
+  font-size: 1em;
+}

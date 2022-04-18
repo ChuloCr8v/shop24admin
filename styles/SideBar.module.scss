@@ -6,7 +6,13 @@
   background: #d4d4d4;
   transform: translateX(-100%);
   position: fixed;
+  z-index: 888;
   transition: all 0.3s ease-in-out;
+  min-height: 100vh;
+}
+
+.container {
+  margin-top: -10rem;
 }
 
 .wrapper {
@@ -14,23 +20,29 @@
   @include flex;
   justify-content: flex-start ;
   padding: 20px;
-  padding-left: 0;
+  padding-left: 10px;
 }
 
 .heading {
+  width: 100%;
+  text-align: left;
   font-size: 14px;
   color:rgb(93,93,93);
-  margin-left: -30px;
 }
 
-.items {}
+.items {
+  width: 100%;
+  @include flex;
+  align-items: flex-start ;
+  justify-content: flex-start ;
+}
 
 .item {
   @include flex;
   flex-direction: row;
   justify-content: flex-start;
-  margin-left: 25px;
   padding: 0 15px;
+  min-width: 100%;
   transition: all 0.3s;
   cursor: pointer ;
   * + * {
