@@ -4,8 +4,8 @@
   width: 100%;
   @include flex;
   margin: 5rem 0;
-  margin: 5rem 0;
   overflow: scroll;
+
 }
 
 .wrapper {
@@ -34,7 +34,12 @@
   margin-bottom: 20px;
   background: #fa7a7a;
   box-shadow: inset 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  * + * {
+    margin-left: 20px;
+  }
 }
+
+
 
 .header {
   color: white;
@@ -44,6 +49,7 @@
 .transaction {
   top: 0;
   margin-top: -10px;
+  padding: 10px ;
 }
 
 .item {
@@ -59,7 +65,8 @@
 .customer_details {
   @include flex;
   flex-direction: row;
-  margin-left: 20px;
+  justify-content: flex-start ;
+  margin-right : 20px;
 }
 
 .name {
@@ -67,6 +74,25 @@
   font-size: .9em;
 }
 
-.itemPending {
-  background: yellow;
+
+.Pending ,
+.Approved,
+.Rejected {
+  border: none;
+  border-radius: 100px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  padding: 5px 13px;
+}
+
+.Pending {
+  background: #ffff98;
+  color: black ;
+}
+
+.Approved {
+  background: #95ff48;
+}
+
+.Rejected {
+  background: #f77d67f2;
 }

@@ -6,7 +6,7 @@ const WidgetLg= () => {
    
    const Button = ({type}) => {
      return(
-       <button className={`${styles.item} + type`}>{type}</button>
+       <button className={styles[type]}>{type}</button>
      )
    }
    
@@ -40,7 +40,7 @@ const WidgetLg= () => {
       name: 'Josh', 
       date: '15 March',
       amount: '$5,800',
-      status: 'Approved'
+      status: 'Rejected'
     },
   ]
   
