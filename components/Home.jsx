@@ -3,6 +3,7 @@ import styles from '../styles/Home.module.scss'
 import FeaturedStats from './FeaturedStats'
 import Chart from './Chart'
 import WidgetSm from './WidgetSm'
+import WidgetLg from './WidgetLg'
 
 const Home = () => {
   return (
@@ -11,6 +12,7 @@ const Home = () => {
           <FeaturedStats />
           <Chart />
           <WidgetSm />
+          <WidgetLg />
         </div>
       </section>
     )

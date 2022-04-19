@@ -9,10 +9,11 @@
   z-index: 888;
   transition: all 0.3s ease-in-out;
   min-height: 100vh;
+  box-shadow: $box-shadow;
 }
 
 .container {
-  margin-top: -10rem;
+  margin-top: 1rem;
 }
 
 .wrapper {
