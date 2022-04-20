@@ -1,0 +1,57 @@
+@import 'globals.module.scss';
+
+
+.user_list {
+  @include flex;
+}
+
+.wrapper {
+  height: 450px;
+  width: 100%;
+}
+
+.username,
+.actions {
+  width: 100%;
+  @include flex;
+  flex-direction: row;
+  justify-content: space-between;
+  p {
+    width: 100%;
+    @include flex;
+    align-items: flex-start;
+    text-align: left;
+    padding-left: 20px;
+  }
+}
+
+.user_img {
+  border-radius: 50%;
+}
+
+.actions {
+  width: auto;
+}
+
+.edit {
+  color: black;
+  display: block ;
+  padding: 10px 15px;
+  background: #00fb00;
+  box-shadow: 0 8px 20px 0 rgba(31, 38, 135, 0.17);
+  border-radius: 100px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  &:hover {
+    background: #000;
+    color: white;
+  }
+}
+
+.icon {
+  margin-left: 20px;
+  color: #000;
+  transition: all 0.3s;
+  &:hover {
+    color: crimson;
+  }
+}

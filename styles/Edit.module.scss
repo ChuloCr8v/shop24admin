@@ -1,0 +1,143 @@
+@import 'globals.module.scss';
+
+.edit {
+  width: 100vw;
+  @include flex;
+  padding: 5rem 0;
+
+}
+
+.wrapper,
+.user_details,
+.edit_user {
+  @include flex;
+  width: 100%;
+}
+
+.user_details,
+.edit_user {
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(6.5px);
+  -webkit-backdrop-filter: blur(6.5px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 20px;
+}
+
+.user_info {
+  width: 100%;
+  @include flex;
+  flex-direction: row;
+  justify-content: flex-start; > * + * {
+    margin-left: 20px;
+  }
+}
+
+.user_img {
+  border-radius: 50%;
+}
+
+.user_name {
+  font-weight: 700;
+  font-size: 1.3em;
+}
+
+.job {
+  font-weight: 300;
+}
+
+.items,
+.edit_user {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.subheading {
+  font-weight: 700;
+  color: gray;
+}
+
+.item {
+  @include flex;
+  flex-direction: row;
+  Justify-content: flex-start;
+  * + * {
+    margin-left: 10px;
+  }
+}
+
+
+.edit_user {
+  margin-top: 5rem;
+}
+
+.edit_avatar {
+  width: 100%;
+  @include flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin: 20px 0;
+  img {
+    border-radius: 50px;
+  }
+}
+
+.icon {
+  margin-left: 20px;
+  transition: all 0.3s;
+  &:hover {
+    color: crimson;
+    transform: scale(1.1);
+  }
+}
+
+.edit_form {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(6.5px);
+  -webkit-backdrop-filter: blur(6.5px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 20px; > * + * {
+    margin-top: 20px;
+  }
+}
+
+.form_group {
+  width: 100%;
+  @include flex;
+  align-items: flex-start;
+  label {
+    margin-bottom: 10px;
+    color: crimson;
+    font-size: .8em;
+    font-weight: 600;
+  }
+  input {
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    border: 2px black solid;
+    padding: 5px 10px;
+    &:hover {
+      border-color: red;
+    }
+  }
+}
+
+.submit_btn {
+  width: 100%;
+  background:#ff3030;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  transition: all 0.3s;
+  cursor: pointer;
+  padding: 10px 0;
+  &:hover {
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  }
+}

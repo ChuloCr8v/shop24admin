@@ -1,5 +1,6 @@
 import styles from '../styles/SideBar.module.scss'
 import {FaHome, FaChartLine, FaChartBar, FaUsers, FaShoppingBag, FaCreditCard, FaBook, FaComments, FaEnvelope, FaCommentDots, FaBriefcase, FaInfoCircle} from 'react-icons/fa'
+import Link from 'next/link'
 
 const SideBar = ({showSideBar}) => {
   return (
@@ -25,10 +26,12 @@ const SideBar = ({showSideBar}) => {
           <div className={styles.wrapper}>
             <h3 className={styles.heading}>Quick Menu</h3>
             <div className={styles.items}>
-              <div className={styles.item}>
-                <FaUsers className={styles.icon} />
-                <p> Users </p>
-              </div>
+              <Link href="/users">
+                <a className={styles.item}>
+                  <FaUsers className={styles.icon} />
+                  <p> Users </p>
+                </a>
+              </Link>
               <div className={styles.item}>
                 <FaShoppingBag className={styles.icon} />
                 <p> Products </p>
