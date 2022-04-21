@@ -2,12 +2,19 @@
 import styles from '../styles/Edit.module.scss'
 import avatar from '../public/images/avatarr.jpg'
 import {FaUser, FaCalendar, FaPhone, FaEnvelope, FaMapMarker, FaUpload} from 'react-icons/fa'
+import Link from 'next/link'
 
 const Edit = (props) => { 
   
   return ( 
       <section className={styles.edit}>
        <div className={styles.container}>
+        <div className={styles.heading_wrapper}>
+          <p className={styles.heading}>Viewing <span>{props.name}</span></p>
+          <Link href="/create-user">
+            <a className={styles.create_btn}>Create User </a>
+          </Link>
+        </div>
         <div class={styles.wrapper}>
           <div class={styles.user_details}>
             <div className={styles.user_info}>
@@ -47,7 +54,7 @@ const Edit = (props) => {
           <div class={styles.edit_user}>
             <div className={styles.edit_avatar}>
               <img src={avatar.src} alt="new image" height="100" width="100" />
-              <FaUpload className={styles.icon} />
+              <FaUpload className={`${styles.icon} ${styles.edit_avatar_icon}`} />
             </div>
             <form className={styles.edit_form}>
               <div className={styles.form_group}>
