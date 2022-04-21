@@ -4,17 +4,21 @@ import img from '../public/images/watch.png'
 import {FaProduct, FaCalendar, FaPhone, FaEnvelope, FaMapMarker, FaUpload} from 'react-icons/fa'
 import Link from 'next/link'
 import {productChartData} from '../components/DummyData'
+import Heading from '../components/Heading'
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
+import {useState} from 'react'
 
 const EditProduct = (props) => { 
+
+  const [imgg, setImgg] = useState('')
   
   return ( 
       <section className={styles.product}>
        <div className={styles.container}>
         <div className={styles.heading_wrapper}>
-          <p className={styles.heading}>Product Details</p>
+          <Heading heading={"Product Details"} />
           <Link href="/create-product">
-            <a className={styles.create_btn}>Create Product </a>
+            <a className={styles.create_btn}>Create </a>
           </Link>
         </div>
         <div class={styles.wrapper}>
@@ -64,6 +68,10 @@ const EditProduct = (props) => {
           </div>
           <div className={styles.edit}>
             <p className={styles.subheading}>Edit Product</p>
+            <div className={styles.product_img}>
+             <input type="file" id="img" name="img" accept="image/*" onChange={(e) => setImgg(e.target.files[0])} className={styles.img_input} />
+             {imgg && <img src={URL.createObjectURL(imgg)} />} 
+         </div>
             <form className={styles.product_edit_form}>
               <div className={styles.form_group}>
                 <label htmlFor="price">Price:</label>

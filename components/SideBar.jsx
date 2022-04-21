@@ -32,10 +32,12 @@ const SideBar = ({showSideBar}) => {
                   <p> Users </p>
                 </a>
               </Link>
-              <div className={styles.item}>
-                <FaShoppingBag className={styles.icon} />
-                <p> Products </p>
-              </div>
+              <Link href="/products">
+                <a className={styles.item}>
+                  <FaShoppingBag className={styles.icon} />
+                  <p> Products </p>
+                </a>
+              </Link>
               <div className={styles.item}>
                 <FaCreditCard className={styles.icon} />
                 <p> Transactions </p>

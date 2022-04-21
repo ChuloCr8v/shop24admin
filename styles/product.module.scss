@@ -1,0 +1,189 @@
+@import 'globals.module.scss';
+
+.product {
+  width: 100vw;
+  @include flex;
+  padding: 5rem 0;
+}
+
+.heading_wrapper {
+  width: 100%;
+  @include flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 20px;
+  margin-bottom: 120px;
+}
+
+.heading {
+  color: black ;
+  font-weight: 400;
+  font-size: 1.5em;
+  text-transform: capitalize;
+}
+
+.subheading {
+  font-size: 1.5em;
+  font-weight: 300;
+  margin-bottom: 30px;
+}
+
+.create_btn {
+  color: white;
+  background: #ff5e00 ;
+  padding: 10px;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  transition: all 0.3s;
+  &:hover {
+    background: #000;
+  }
+}
+
+.wrapper,
+.row {
+  @include flex;
+  width: 100%;
+}
+
+.performance {
+  position: relative ;
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(6.5px);
+  -webkit-backdrop-filter: blur(6.5px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  width: 100%;
+  padding: 50px;
+  overflow-x: scroll;
+  p {
+    color: black;
+    font-weight: 700;
+    font-size: 1.3em ;
+  }
+}
+
+.chart_wrapper {
+  height: 300px;
+  width: 500px;
+  margin-top: 50px;
+}
+
+.details_wrapper {
+  margin-top: 100px;
+  width: 100%;
+  @include flex;
+  align-items: flex-start;
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(6.5px);
+  -webkit-backdrop-filter: blur(6.5px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 30px; > * + * {
+    margin-top: 30px;
+  }
+}
+
+
+.detail {
+  @include flex;
+  flex-direction: row;
+  img {
+    object-fit: cover ;
+  }
+}
+
+.key {
+  width: 100px;
+  font-weight: 300;
+  font-size: 1.1em;
+  color: #ff5e00 ;
+}
+
+.value {
+  text-align: left ;
+  width: 80px;
+}
+
+.name {
+  line-height: 20pt;
+  margin-left: 30px;
+  font-size: 1.3em;
+  color: crimson ;
+  font-weight: 700;
+}
+
+.edit {
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(6.5px);
+  -webkit-backdrop-filter: blur(6.5px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  margin-top: 150px;
+  padding: 30px;
+}
+
+
+.product_img {
+  @include flex;
+  flex-direction: row;
+  position: relative;
+  input {
+    width: 87px;
+  }
+  img {
+    object-fit: cover;
+    border-radius: 100%;
+    height: 120px;
+    width: 120px;
+    margin-left: 25px;
+  }
+}
+
+
+.product_edit_form {
+  margin-top: 60px;
+}
+
+.form_group {
+  @include flex;
+  flex-direction: row;
+  justify-content: flex-start ;
+  margin-top: 20px;
+  input,
+  select {
+    flex-basis: 100%;
+    margin-left: 20px;
+    padding: 7px;
+    border-radius: 5px ;
+    &:focus {
+      border: 3px black solid ;
+    }
+  }
+  label {
+    flex-basis: 20%;
+    font-weight: 300;
+    font-size: 1.1em;
+    color: #ff5e00 ;
+  }
+}
+
+
+.submit_btn {
+  margin-top: 30px;
+  width: 100%;
+  background: #ff5e00;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  transition: all 0.3s;
+  cursor: pointer;
+  padding: 10px 0;
+  transition: all 0.3s;
+  &:hover {
+    background: #000;
+  }
+}

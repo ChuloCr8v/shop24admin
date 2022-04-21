@@ -56,13 +56,13 @@ const Chart = () => {
   
   return (
     <div className={styles.wrapper}>
-    <LineChart width={600} height={300} data={data} margin={{ top: 5, left: 20, bottom: 5, right: 20 }}>
-    <Line type="monotone" dataKey="users" stroke="#8884d8" />
-    <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-    <XAxis dataKey="month" />
-    <Tooltip />
-  </LineChart>
-  </div>
+      <LineChart width={600} height={300} data={data} margin={{ top: 5, left: 20, bottom: 5, right: 20 }}>
+        <Line type="monotone" dataKey="users" stroke="#8884d8" />
+        <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
+        <XAxis dataKey="month" />
+        <Tooltip />
+      </LineChart>
+    </div>
  ) 
 } ;
 
