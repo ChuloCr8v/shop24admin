@@ -3,17 +3,30 @@ import { DataGrid, GridRowsProp, GridColDef } from '@mui/x-data-grid';
 import styles from '../styles/ProductList.module.scss'
 import {FaTrash} from 'react-icons/fa'
 import Link from 'next/link'
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import {productRows} from './DummyData'
 import Heading from './Heading'
+import {getProducts} from './apiCalls'
+import {useDispatch, useSelector} from 'react-redux'
+
+
 
 export default function ProductList() {
 
-const [data, setData] = useState(productRows)
+const [data, setData] = useState('')
 
 const handleDelete = (id) => {
   setData(data.filter((item) => item.id !== id))
 }
+
+const dispatch = useDispatch()
+
+ let products = useSelector(state => state.product.products)
+  console.log(products)
+useEffect(() => {
+  getProducts(dispatch)
+  setData(products)
+}, [dispatch])
 
 
 const columns = [
@@ -60,7 +73,7 @@ const columns = [
       <div className={styles.container} >
         <Heading heading={"Product Details"} />
         <div className={styles.wrapper}>
-          <DataGrid rows={data} columns={columns} checkboxSelection disableSelectionOnClick />
+          <DataGrid rows={products} columns={columns} checkboxSelection disableSelectionOnClick />
         </div>
       </div>
     </section>

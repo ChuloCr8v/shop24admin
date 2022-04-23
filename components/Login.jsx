@@ -3,18 +3,20 @@ import Link from 'next/link'
 import {useState} from 'react'
 import {login} from './apiCalls'
 import {useDispatch, useSelector} from 'react-redux'
+import {useRouter} from 'next/router'
 
 const Login = () => {
-  
+ 
    const [username, setUsername] = useState('')
    const [password, setPassword] = useState('')
    
+   const router = useRouter()
    const dispatch = useDispatch()
    const {error, isFetching} = useSelector(state => state.user)
    
    const handleLogin = (e) => {
      e.preventDefault();
-     login(dispatch, {username, password})
+     login(dispatch, router, {username, password})
    }
    
   return(

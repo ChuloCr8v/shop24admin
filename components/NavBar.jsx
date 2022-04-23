@@ -8,7 +8,6 @@ const NavBar = ({setShowSideBar, showSideBar}) => {
   
   const dispatch = useDispatch()
   let user = useSelector(state => state.user.currentUser)
-  console.log(user)
   
  const Logout = () => {
    return <button onClick={handleLogout} > Logout </button>
@@ -43,6 +42,7 @@ const NavBar = ({setShowSideBar, showSideBar}) => {
             <div className={styles.avatar}>
               <img src={avatar.src} height="40" width="40" alt="avatar" />
             </div>
+            <Logout />
           </div>
         </div>
       </nav> : '' } 
