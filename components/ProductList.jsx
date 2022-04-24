@@ -6,24 +6,26 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { productRows } from "./DummyData";
 import Heading from "./Heading";
-import { getProducts } from "./apiCalls";
+import { getProducts, deleteProduct} from "./apiCalls";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function ProductList() {
-  const [data, setData] = useState("");
-
-  const handleDelete = (id) => {
-    setData(data.filter((item) => item.id !== id));
-  };
-
+  const [data, setData] = useState([]);
   const dispatch = useDispatch();
 
+  const handleDelete = (id) => {
+    console.log(1)
+    deleteProduct(dispatch, id)
+  };
+
+
+  let products = useSelector((state) => state.product.products);
+  
+  //  setData(products)
   useEffect(() => {
     getProducts(dispatch);
   }, [dispatch]);
 
-  let products = useSelector((state) => state.product.products);
-  console.log(products);
 
   const columns = [
     {
@@ -33,13 +35,7 @@ export default function ProductList() {
       renderCell: (params) => {
         return (
           <div className={styles.productname}>
-            <img
-              src={params.row.img.src}
-              className={styles.product_img}
-              height="40"
-              width="40"
-            />
-            <p>{params.row.name}</p>
+            <p>{params.row.title}</p>
           </div>
         );
       },
@@ -70,7 +66,7 @@ export default function ProductList() {
             </Link>
             <FaTrash
               className={styles.icon}
-              onClick={() => handleDelete(params.row.id)}
+              onClick={() => handleDelete(params.row._id)}
             />
           </div>
         );
@@ -85,6 +81,7 @@ export default function ProductList() {
         <div className={styles.wrapper}>
           <DataGrid
             rows={products}
+            getRowId={products => products._id}
             columns={columns}
             checkboxSelection
             disableSelectionOnClick

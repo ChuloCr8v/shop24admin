@@ -28,6 +28,20 @@ const CreateProduct = () => {
               <input type="number" placeholder="Enter Product Price" required />
             </div>
             <div className={styles.form_group}>
+                <label htmlFor="category">Active:</label>
+                <select multiple size="9">
+                  <option>shoes</option>
+                  <option>clothes</option>
+                  <option>winter</option>
+                  <option>accessories</option>
+                  <option>men</option>
+                  <option>women</option>
+                  <option>wristwatch</option>
+                  <option>eyeglasses</option>
+                  <option>bags</option>
+                </select>
+              </div>
+            <div className={styles.form_group}>
               <label htmlFor="stock">Stock</label>
               <input type="number" placeholder="Enter Product Quantity" required />
             </div>
@@ -41,9 +55,13 @@ const CreateProduct = () => {
               <div className={styles.form_group}>
                 <label htmlFor="name">Active:</label>
                 <select>
-                  <option>Yes </option>
-                  <option>No</option>
+                  <option>true</option>
+                  <option>false</option>
                 </select>
+              </div>
+              <div className={styles.form_group}>
+                <label htmlFor="description">Stock</label>
+                <input type="text" placeholder="Enter Product Description" required />
               </div>
               <button className={styles.create_btn}>Create</button>
           </form>

@@ -3,9 +3,11 @@ import { DataGrid, GridRowsProp, GridColDef } from '@mui/x-data-grid';
 import styles from '../styles/UserList.module.scss'
 import {FaTrash} from 'react-icons/fa'
 import Link from 'next/link'
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import {userRows} from './DummyData'
 import Heading from './Heading'
+import {useDispatch, useSelector} from 'react-redux'
+import {getUsers} from './apiCalls'
 export default function UserList() {
 
 const [data, setData] = useState(userRows)
@@ -14,12 +16,18 @@ const handleDelete = (id) => {
   setData(data.filter((item) => item.id !== id))
 }
 
+const dispatch = useDispatch()
+
+useEffect(() => {
+  getUsers(dispatch)
+}, [])
+
+const users = useSelector(state => state.user.users)
 
 const columns = [
   { field: 'username', headerName: 'Customer', width: 180, renderCell: (params) => {
       return(
           <div className={styles.username}>
-            <img src={params.row.avatar.src} className={styles.user_img} height="40" width="40" />
             <p>
             {params.row.username}
             </p>
@@ -57,7 +65,7 @@ const columns = [
       <div className={styles.container} >
         <Heading heading={"Users"} />
         <div className={styles.wrapper}>
-          <DataGrid rows={data} columns={columns} checkboxSelection disableSelectionOnClick />
+          <DataGrid rows={users} columns={columns} getRowId={users => users._id} checkboxSelection disableSelectionOnClick />
         </div>
       </div>
     </section>
