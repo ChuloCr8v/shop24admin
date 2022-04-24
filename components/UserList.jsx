@@ -7,22 +7,22 @@ import {useState, useEffect} from 'react'
 import {userRows} from './DummyData'
 import Heading from './Heading'
 import {useDispatch, useSelector} from 'react-redux'
-import {getUsers} from './apiCalls'
+import {getUsers, deleteUser} from './apiCalls'
 export default function UserList() {
 
 const [data, setData] = useState(userRows)
 
 const handleDelete = (id) => {
-  setData(data.filter((item) => item.id !== id))
+  deleteUser(dispatch, id)
 }
 
 const dispatch = useDispatch()
+const users = useSelector(state => state.user.users)
 
 useEffect(() => {
   getUsers(dispatch)
-}, [])
+}, [users])
 
-const users = useSelector(state => state.user.users)
 
 const columns = [
   { field: 'username', headerName: 'Customer', width: 180, renderCell: (params) => {
@@ -53,7 +53,7 @@ const columns = [
             <a className={styles.edit}>Edit</a>
           </Link>
           <FaTrash className={styles.icon}
-            onClick={() => handleDelete(params.row.id)} 
+            onClick={() => handleDelete(params.row._id)} 
           />
         </div>
       )

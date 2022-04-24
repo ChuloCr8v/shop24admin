@@ -1,4 +1,4 @@
-import {loginStart, loginSuccessful, loginError, logOut, getUsersSuccess, getUsersError} from './redux/UserRedux'
+import {loginStart, loginSuccessful, loginError, logOut, getUsersSuccess, getUsersError, deleteUserStart, deleteUserSuccess, deleteUserError} from './redux/UserRedux'
 import {isFetching, productFetchSuccess, productFetchError, productDeleteSuccess, productDeleteError } from './redux/ProductRedux'
 import axios from 'axios'
 import {publicRequest, userRequest} from './requestMethods'
@@ -31,6 +31,17 @@ export const getUsers = async (dispatch) => {
   }
 }
 
+export const deleteUser = async (dispatch, id) => {
+  dispatch(deleteUserStart())
+  try {
+    const res = await publicRequest.delete(`/users/${id}`) 
+     dispatch(deleteUserSuccess(id))
+  } catch (e) {
+    console.log(e)
+    dispatch(getUsersError())
+  }
+}
+
 export const getProducts = async (dispatch) => {
   //dispatch(isFetching())
   try {
@@ -43,12 +54,9 @@ export const getProducts = async (dispatch) => {
 }
 
 export const deleteProduct = async (dispatch, id) => {
-    console.log(2)
     //dispatch(isFetching());
   try {
-      console.log(3)
       const res = await publicRequest.delete(`/products/${id}`)
-      console.log(4)
       dispatch(productDeleteSuccess(id))
   } catch (e) {
   console.log(e)

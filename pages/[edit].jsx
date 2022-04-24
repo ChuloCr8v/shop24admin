@@ -13,7 +13,7 @@ const Edit = (props) => {
       <section className={styles.edit}>
        <div className={styles.container}>
         <div className={styles.heading_wrapper}>
-          <p className={styles.heading}>Viewing <span>{props.name}</span></p>
+          <p className={styles.heading}>Viewing <span>{props.fullname}</span></p>
           <Link href="/create-user">
             <a className={styles.create_btn}>Create User </a>
           </Link>
@@ -23,19 +23,19 @@ const Edit = (props) => {
             <div className={styles.user_info}>
               <img src={avatar.src} alt={props.name} className={styles.user_img} height="50" width="50" />
               <div className={styles.name_wrapper} >
-                <p className={styles.user_name}>{props.name}</p>
-                <p className={styles.job}>Software Engineer</p>
+                <p className={styles.user_name}>{props.fullname}</p>
+                <p className={styles.job}>{props.username}</p>
               </div>
             </div>
             <div className={styles.items}>
               <p className={styles.subheading}>Account Details</p>
               <div className={styles.item}>
                 <FaUser className={styles.icon} />
-                <p>John911</p>
+                <p>{props.username}</p>
               </div>
               <div className={styles.item}>
                 <FaCalendar className={styles.icon} />
-                <p>12.03.2022</p>
+                <p>{props.date}</p>
               </div>
             </div>
             <div className={styles.items}>
@@ -46,7 +46,7 @@ const Edit = (props) => {
               </div>
               <div className={styles.item}>
                 <FaEnvelope className={styles.icon} />
-                <p>Chulocr8v@gmail.com</p>
+                <p>{props.email}</p>
               </div>
               <div className={styles.item}>
                 <FaMapMarker className={styles.icon} />
@@ -62,15 +62,15 @@ const Edit = (props) => {
             <form className={styles.edit_form}>
               <div className={styles.form_group}>
                 <label htmlFor="username">Username</label>
-                <input type="text" placeholder="John991" name="username" />
+                <input type="text" placeholder={props.username} name="username" />
               </div>
               <div className={styles.form_group}>
                 <label htmlFor="fullname">Full Name</label>
-                <input type="text" placeholder="John Snow" name="fullname" />
+                <input type="text" placeholder={props.fullname} name="fullname" />
               </div>
               <div className={styles.form_group}>
-                <label htmlFor="username">Email</label>
-                <input type="email" placeholder="chulocr8v@gmail.com" name="email" />
+                <label htmlFor="email">Email</label>
+                <input type="email" placeholder={props.email} name="email" />
               </div>
               <div className={styles.form_group}>
                 <label htmlFor="phone">Phone</label>
@@ -95,8 +95,10 @@ export async function getServerSideProps(context) {
   return {
     props: {
       id: context.query.edit,
-      name: context.query.name,
+      username: context.query.username,
+      fullname: context.query.fullname,
       email: context.query.email,
+      date: context.query.date,
     },
   };
 }

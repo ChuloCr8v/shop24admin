@@ -12,13 +12,13 @@ export default function Index() {
   const user = useSelector(state => state.user.currentUser)
   const router = useRouter()
  
- useEffect(() => {
+ /*useEffect(() => {
    if (user === null){
     router.push('/login')
    } else {
      return;
    }
- }, [user])
+ }, [user]) */
  
   return (
     <div className={styles.container}>
