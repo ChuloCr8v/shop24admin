@@ -3,8 +3,11 @@ import styles from '../styles/Edit.module.scss'
 import avatar from '../public/images/avatarr.jpg'
 import {FaUser, FaCalendar, FaPhone, FaEnvelope, FaMapMarker, FaUpload} from 'react-icons/fa'
 import Link from 'next/link'
+import {useState} from 'react'
 
 const Edit = (props) => { 
+  
+   const [imgg, setImgg] = useState('')
   
   return ( 
       <section className={styles.edit}>
@@ -52,10 +55,10 @@ const Edit = (props) => {
             </div>
           </div>
           <div class={styles.edit_user}>
-            <div className={styles.edit_avatar}>
-              <img src={avatar.src} alt="new image" height="100" width="100" />
-              <FaUpload className={`${styles.icon} ${styles.edit_avatar_icon}`} />
-            </div>
+             <div className={styles.user_img}>
+            <input type="file" id="img" name="img" accept="image/*" onChange={(e) => setImgg(e.target.files[0])} className={styles.img_input} />
+           {imgg && <img src={URL.createObjectURL(imgg)} />} 
+          </div>
             <form className={styles.edit_form}>
               <div className={styles.form_group}>
                 <label htmlFor="username">Username</label>

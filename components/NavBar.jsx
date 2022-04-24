@@ -1,11 +1,24 @@
 import styles from '../styles/NavBar.module.scss'
 import {FaBell, FaCog, FaBars} from 'react-icons/fa'
 import avatar from '../public/images/avatarr.jpg'
+import {useSelector, useDispatch} from 'react-redux'
+import {login, logout} from './apiCalls'
 
 const NavBar = ({setShowSideBar, showSideBar}) => {
   
+  const dispatch = useDispatch()
+  let user = useSelector(state => state.user.currentUser)
+  
+ const Logout = () => {
+   return <button onClick={handleLogout} > Logout </button>
+ }
+ 
+ const handleLogout = () => {
+    logout(dispatch)  
+ }
   return (
-      <nav className={styles.navbar}>
+    <>
+      {user ? <nav className={styles.navbar} >
         <div className={styles.container}>
           <div className={styles.left_side}>
             <FaBars className={styles.icon} 
@@ -29,9 +42,11 @@ const NavBar = ({setShowSideBar, showSideBar}) => {
             <div className={styles.avatar}>
               <img src={avatar.src} height="40" width="40" alt="avatar" />
             </div>
+            <Logout />
           </div>
         </div>
-      </nav>
+      </nav> : '' } 
+     </>
     )
 }
 

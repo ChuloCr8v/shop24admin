@@ -4,11 +4,11 @@ import styles from '../styles/UserList.module.scss'
 import {FaTrash} from 'react-icons/fa'
 import Link from 'next/link'
 import {useState} from 'react'
-import {rows} from './DummyData'
-
+import {userRows} from './DummyData'
+import Heading from './Heading'
 export default function UserList() {
 
-const [data, setData] = useState(rows)
+const [data, setData] = useState(userRows)
 
 const handleDelete = (id) => {
   setData(data.filter((item) => item.id !== id))
@@ -55,7 +55,7 @@ const columns = [
   return (
     <section className={styles.user_list}>
       <div className={styles.container} >
-        <h2 className={styles.heading}> Users </h2>
+        <Heading heading={"Users"} />
         <div className={styles.wrapper}>
           <DataGrid rows={data} columns={columns} checkboxSelection disableSelectionOnClick />
         </div>

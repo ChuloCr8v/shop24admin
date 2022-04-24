@@ -7,7 +7,6 @@
 
 .container {
   @include flex;
-  min-height: 100vh ;
   width: min(90%, 80rem);
 }
 

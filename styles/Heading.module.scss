@@ -1,0 +1,17 @@
+.heading_wrapper {
+  width: 100%;
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 20%;
+    left: 0;
+    bottom: 0;
+    border-bottom: 5px red solid ;
+  }
+}
+.heading {
+  font-size: 1.5em;
+  font-weight: 400;
+}
