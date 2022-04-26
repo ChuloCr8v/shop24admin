@@ -10,7 +10,7 @@ const Home = () => {
       <section className={styles.home} >
         <div className={styles.container}>
           <FeaturedStats />
-          <Chart />
+          {/*<Chart /> */} 
           <WidgetSm />
           <WidgetLg />
         </div>

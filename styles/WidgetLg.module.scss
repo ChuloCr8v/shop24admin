@@ -35,7 +35,7 @@
   background: #fa7a7a;
   box-shadow: inset 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   * + * {
-    margin-left: 20px;
+    margin-left: 10px;
   }
 }
 
@@ -66,7 +66,7 @@
   @include flex;
   flex-direction: row;
   justify-content: flex-start ;
-  margin-right : 20px;
+  //margin-right : 20px;
 }
 
 .name {
@@ -75,24 +75,24 @@
 }
 
 
-.Pending ,
-.Approved,
-.Rejected {
+.pending ,
+.approved,
+.rejected {
   border: none;
   border-radius: 100px;
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   padding: 5px 13px;
 }
 
-.Pending {
+.pending {
   background: #ffff98;
   color: black ;
 }
 
-.Approved {
+.approved {
   background: #95ff48;
 }
 
-.Rejected {
+.rejected {
   background: #f77d67f2;
 }

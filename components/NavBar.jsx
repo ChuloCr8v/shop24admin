@@ -3,7 +3,7 @@ import {FaBell, FaCog, FaBars} from 'react-icons/fa'
 import avatar from '../public/images/avatarr.jpg'
 import {useSelector, useDispatch} from 'react-redux'
 import {login, logout} from './apiCalls'
-
+import Link from 'next/link'
 const NavBar = ({setShowSideBar, showSideBar}) => {
   
   const dispatch = useDispatch()
@@ -26,7 +26,9 @@ const NavBar = ({setShowSideBar, showSideBar}) => {
               style = {{color: `${showSideBar ? 'red' : 'black'} `}} 
             />
             <div className={styles.logo_container}>
-              <h3 className={styles.logo}>Shop<span>24Seven </span></h3>
+              <Link href="/">
+                <a className={styles.logo}>Shop<span>24Seven </span></a>
+              </Link>
             </div>
           </div>
           <div className={styles.right_side}>

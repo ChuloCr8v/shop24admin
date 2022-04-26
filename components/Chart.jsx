@@ -1,65 +1,53 @@
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
 import styles from '../styles/Chart.module.scss'
-
-const data = [
-  {
-    month: 'Jan',
-    users: 400
-  }, 
-  {
-    month: 'feb',
-    users: 450
-  }, 
-  {
-    month: 'March',
-    users: 300
-  }, 
-  {
-    month: 'April',
-    users: 600
-  }, 
-  {
-    month: 'May',
-    users: 450
-  }, 
-  {
-    month: 'June',
-    users: 1800
-  }, 
-  {
-    month: 'July',
-    users: 800
-  }, 
-  {
-    month: 'Aug',
-    users: 1400
-  }, 
-  {
-    month: 'Sept',
-    users: 2000
-  }, 
-  {
-    month: 'Oct',
-    users: 2400
-  }, 
-  {
-    month: 'Nov',
-    users: 2450
-  }, 
-  {
-    month: 'Dec',
-    users: 6000
-  }
-];
+import {useState, useEffect, useMemo} from 'react'
+import {publicRequest} from './requestMethods'
 
 const Chart = () => {
   
+  const [userStats, setUserStats] = useState([])
+  
+  const MONTHS = useMemo(() => [
+    "Jan", 
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug", 
+    "Sep",
+    "Oct", 
+    "Nov", 
+    "Dec",
+  ], [])
+    
+  useEffect(() => {
+    const getUserStats = async () => {
+      try {
+       
+      const res = await publicRequest.get('/users/stats')
+      res.data.map((item) => 
+        setUserStats((prev) => [
+          ...prev, {
+            name: MONTHS[item._id - 1], 
+            "Active Users": item.total
+          }])
+      ) 
+      } catch (e) {
+        console.log(e)
+      }
+    }
+    getUserStats()
+  }, [MONTHS])
+  
+
   return (
     <div className={styles.wrapper}>
-      <LineChart width={600} height={300} data={data} margin={{ top: 5, left: 20, bottom: 5, right: 20 }}>
-        <Line type="monotone" dataKey="users" stroke="#8884d8" />
+      <LineChart width={600} height={300} data={userStats} margin={{ top: 5, left: 20, bottom: 5, right: 20 }}>
+        <Line type="monotone" dataKey="Active Users" stroke="#8884d8" />
         <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-        <XAxis dataKey="month" />
+        <XAxis dataKey="name" />
         <Tooltip />
       </LineChart>
     </div>

@@ -40,13 +40,14 @@ const columns = [
   { field: 'actions', headerName: 'Actions', width: 130, renderCell: (params) => {
     return (
         <div className={styles.actions} >
-          <Link 
-            href={{
+          <Link href={{
               pathname: "/[edit]",
               query: {
-                edit: params.row.id,
-                name: params.row.name,
-                email: params.row.email
+                edit: params.row._id,
+                fullname: params.row.fullname,
+                username: params.row.username,
+                email: params.row.email, 
+                date: params.row.createdAt
               },
             }} 
           >
