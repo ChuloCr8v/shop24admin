@@ -18,6 +18,7 @@ const handleDelete = (id) => {
 
 const dispatch = useDispatch()
 const users = useSelector(state => state.user.users)
+//console.log(users)
 
 useEffect(() => {
   getUsers(dispatch)

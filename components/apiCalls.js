@@ -1,4 +1,4 @@
-import {loginStart, loginSuccessful, loginError, logOut, getUsersSuccess, getUsersError, deleteUserStart, deleteUserSuccess, deleteUserError} from './redux/UserRedux'
+import {loginStart, loginSuccessful, loginError, logOut, getUsersSuccess, getUsersError, deleteUserStart, deleteUserSuccess, deleteUserError, updateUserStart, updateUserSuccess, updateUserError} from './redux/UserRedux'
 import {isFetching, productFetchSuccess, productFetchError, productDeleteSuccess, productDeleteError } from './redux/ProductRedux'
 import axios from 'axios'
 import {publicRequest, userRequest} from './requestMethods'
@@ -23,7 +23,6 @@ export const getUsers = async (dispatch) => {
   //dispatch(isFetching())
   try {
     const res = await publicRequest.get('/users')
-      console.log(res.data)
     dispatch(getUsersSuccess(res.data))
   } catch (e) {
     console.log(e)
@@ -42,11 +41,27 @@ export const deleteUser = async (dispatch, id) => {
   }
 }
 
+//Edit User 
+
+export const updateUser = async ({id, dispatch, newInfo}) => {
+  try {
+    console.log(id)
+    console.log(newInfo)
+     const res = await publicRequest.put('/users/' + id, newInfo)
+    console.log(res)
+    dispatch(updateUserSuccess({newInfo, id})) 
+       console.log('successful update ')
+  } catch (e) {
+    dispatch(updateUserError())
+    console.log(e)
+  }
+}
+
 export const getProducts = async (dispatch) => {
   //dispatch(isFetching())
   try {
     const res = await publicRequest.get('/products')
-      console.log(res.data)
+      //console.log(res.data)
     dispatch(productFetchSuccess(res.data))
   } catch (e) {
     dispatch(productFetchError())

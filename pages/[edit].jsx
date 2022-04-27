@@ -3,11 +3,37 @@ import styles from '../styles/Edit.module.scss'
 import avatar from '../public/images/avatarr.jpg'
 import {FaUser, FaCalendar, FaPhone, FaEnvelope, FaMapMarker, FaUpload} from 'react-icons/fa'
 import Link from 'next/link'
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
+import {updateUser} from '../components/apiCalls'
+import {useSelector, useDispatch} from 'react-redux'
 
 const Edit = (props) => { 
   
-   const [imgg, setImgg] = useState('')
+  const [newInfo, setNewInfo] = useState({})
+  const [imgg, setImgg] = useState('')
+  const [id, setId] = useState('')
+  
+  
+  const {isFetching} = useSelector(state => state.user)
+  const dispatch = useDispatch()
+  const user = useSelector(state => state.user.users)
+  const data = user.map(item => item._id)
+  
+  useEffect(() => {
+    setId(data)
+  }, [user]) 
+  
+  const handleClick = (e) => {
+    e.preventDefault()
+    updateUser({dispatch, id: id[0], newInfo})
+  }
+  
+  const handleChange = (event) => {
+    setNewInfo({
+     ...newInfo, 
+     [event.target.name]: event.target.value
+    })
+  }
   
   return ( 
       <section className={styles.edit}>
@@ -62,25 +88,25 @@ const Edit = (props) => {
             <form className={styles.edit_form}>
               <div className={styles.form_group}>
                 <label htmlFor="username">Username</label>
-                <input type="text" placeholder={props.username} name="username" />
+                <input type="text" placeholder={props.username} name="username" onChange={() => handleChange(event)}/>
               </div>
               <div className={styles.form_group}>
                 <label htmlFor="fullname">Full Name</label>
-                <input type="text" placeholder={props.fullname} name="fullname" />
+                <input type="text" placeholder={props.fullname} name="fullname" onChange={() => handleChange(event)} />
               </div>
               <div className={styles.form_group}>
                 <label htmlFor="email">Email</label>
-                <input type="email" placeholder={props.email} name="email" />
+                <input type="email" placeholder={props.email} name="email" onChange={() => handleChange(event)} />
               </div>
               <div className={styles.form_group}>
                 <label htmlFor="phone">Phone</label>
-                <input type="number" placeholder="08138369977" name="phone" />
+                <input type="number" placeholder="08138369977" name="phone" onChange={() => handleChange(event)} />
               </div>
               <div className={styles.form_group}>
                 <label htmlFor="address">Address</label>
-                <input type="address" placeholder="Lagos, Nigeria" name="address" />
+                <input type="address" placeholder="Lagos, Nigeria" name="address" onChange={() => handleChange(event)} />
               </div>
-              <button className={styles.submit_btn}>Submit</button>
+              <button className={styles.submit_btn} onClick={handleClick} style={{background: `${isFetching ? 'red' : 'green'}`}}>Submit</button>
             </form>
           </div>
         </div>

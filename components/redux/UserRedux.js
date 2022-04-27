@@ -47,9 +47,25 @@ const userSlice = createSlice({
     deleteUserError: (state) => {
       state.isFetching = false;
       sate.error = true
-    }
+    }, 
+    updateUserStart: (state) => {
+      state.isFetching = true;
+      state.error = false;
+    }, 
+    updateUserSuccess: (state, action) => {
+      state.isFetching = false;
+      sate.error = false;
+      state.users = state.users[
+        state.users.findIndex((item) => item._id === action.payload.id)
+      ] = action.payload.newInfo
+   
+    }, 
+    updateUserError: (state, action) => {
+      state.isFetching = false;
+      state.error = true;
+    }, 
   }
 })
 
-export const {loginStart, loginSuccessful, loginError, logOut, getUsersSuccess, getUsersError, deleteUserStart, deleteUserSuccess, deleteUserError} = userSlice.actions
+export const {loginStart, loginSuccessful, loginError, logOut, getUsersSuccess, getUsersError, deleteUserStart, deleteUserSuccess, deleteUserError, updateUserStart, updateUserSuccess, updateUserError} = userSlice.actions
 export default userSlice.reducer
