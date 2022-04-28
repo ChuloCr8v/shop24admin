@@ -1,31 +1,26 @@
 
 import styles from '../styles/Edit.module.scss'
 import avatar from '../public/images/avatarr.jpg'
-import {FaUser, FaCalendar, FaPhone, FaEnvelope, FaMapMarker, FaUpload} from 'react-icons/fa'
+import {FaUser, FaCalendar, FaPhone, FaEnvelope, FaMapMarker, FaUpload, FaSpinner } from 'react-icons/fa'
 import Link from 'next/link'
 import {useState, useEffect} from 'react'
 import {updateUser} from '../components/apiCalls'
 import {useSelector, useDispatch} from 'react-redux'
-
+import {publicRequest} from '../components/requestMethods'
 const Edit = (props) => { 
   
+  const [user, setUser] = useState([])
   const [newInfo, setNewInfo] = useState({})
   const [imgg, setImgg] = useState('')
   const [id, setId] = useState('')
   
   
-  const {isFetching} = useSelector(state => state.user)
+  const {error, isFetching} = useSelector(state => state.user)
   const dispatch = useDispatch()
-  const user = useSelector(state => state.user.users)
-  const data = user.map(item => item._id)
-  
-  useEffect(() => {
-    setId(data)
-  }, [user]) 
   
   const handleClick = (e) => {
     e.preventDefault()
-    updateUser({dispatch, id: id[0], newInfo})
+    updateUser({dispatch, id: props.id, newInfo})
   }
   
   const handleChange = (event) => {
@@ -35,9 +30,25 @@ const Edit = (props) => {
     })
   }
   
+  useEffect(() => {
+    const getUser = async () => {
+      try {
+        const res = await publicRequest.get(`/users/${props.id}`)
+        setUser(res.data)
+        console.log(res.data)
+        console.log(user)
+      } catch (e) {
+        console.log(e)
+      }
+    }
+    getUser()
+  }, [])
+  
   return ( 
       <section className={styles.edit}>
        <div className={styles.container}>
+       {user.map((item) => (
+         <>
         <div className={styles.heading_wrapper}>
           <p className={styles.heading}>Viewing <span>{props.fullname}</span></p>
           <Link href="/create-user">
@@ -45,12 +56,12 @@ const Edit = (props) => {
           </Link>
         </div>
         <div class={styles.wrapper}>
-          <div class={styles.user_details}>
+           <div class={styles.user_details}>
             <div className={styles.user_info}>
-              <img src={avatar.src} alt={props.name} className={styles.user_img} height="50" width="50" />
+              <img src={avatar.src} alt={item.name} className={styles.user_img} height="50" width="50" />
               <div className={styles.name_wrapper} >
-                <p className={styles.user_name}>{props.fullname}</p>
-                <p className={styles.job}>{props.username}</p>
+                <p className={styles.user_name}>{item.fullname}</p>
+                <p className={styles.job}>{item.username}</p>
               </div>
             </div>
             <div className={styles.items}>
@@ -80,7 +91,7 @@ const Edit = (props) => {
               </div>
             </div>
           </div>
-          <div class={styles.edit_user}>
+          <div className={styles.edit_user}>
              <div className={styles.user_img}>
             <input type="file" id="img" name="img" accept="image/*" onChange={(e) => setImgg(e.target.files[0])} className={styles.img_input} />
            {imgg && <img src={URL.createObjectURL(imgg)} />} 
@@ -106,10 +117,13 @@ const Edit = (props) => {
                 <label htmlFor="address">Address</label>
                 <input type="address" placeholder="Lagos, Nigeria" name="address" onChange={() => handleChange(event)} />
               </div>
-              <button className={styles.submit_btn} onClick={handleClick} style={{background: `${isFetching ? 'red' : 'green'}`}}>Submit</button>
+              {error ? <error style={{color: 'red', fontSize: '0.8rem', marginTop: '20px', marginBottom: '10px'}} >Unable to update user </error> : '' }
+              <button className={styles.submit_btn} onClick={handleClick} style={{opacity: `${isFetching ? 0.5 : 1}`}}>{isFetching ? <FaSpinner className={styles.spinner} /> : 'Submit'} </button>
             </form>
           </div>
         </div>
+        </>
+        ))} 
        </div>
       </section>
     ); 

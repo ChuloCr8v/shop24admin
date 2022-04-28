@@ -54,7 +54,7 @@ const userSlice = createSlice({
     }, 
     updateUserSuccess: (state, action) => {
       state.isFetching = false;
-      sate.error = false;
+      state.error = false;
       state.users = state.users[
         state.users.findIndex((item) => item._id === action.payload.id)
       ] = action.payload.newInfo

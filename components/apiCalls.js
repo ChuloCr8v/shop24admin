@@ -44,13 +44,14 @@ export const deleteUser = async (dispatch, id) => {
 //Edit User 
 
 export const updateUser = async ({id, dispatch, newInfo}) => {
+ dispatch(updateUserStart())
   try {
-    console.log(id)
+//    console.log(id)
     console.log(newInfo)
      const res = await publicRequest.put('/users/' + id, newInfo)
-    console.log(res)
+  //  console.log(res)
     dispatch(updateUserSuccess({newInfo, id})) 
-       console.log('successful update ')
+   //    console.log('successful update ')
   } catch (e) {
     dispatch(updateUserError())
     console.log(e)

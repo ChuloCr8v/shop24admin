@@ -160,7 +160,7 @@
 
 .submit_btn {
   width: 100%;
-  background:#ff3030;
+  background:#000;
   border: none;
   border-radius: 20px;
   color: white;
@@ -168,7 +168,14 @@
   cursor: pointer;
   padding: 10px 0;
   transition: all 0.3s;
-  &:hover {
-    background: #000;
+}
+
+.spinner {
+  animation: rotate 0.55s infinite linear forwards;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg)
   }
 }
