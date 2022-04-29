@@ -10,6 +10,7 @@ import { getProducts, deleteProduct} from "./apiCalls";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function ProductList() {
+  
   const [data, setData] = useState([]);
   const dispatch = useDispatch();
 

@@ -7,20 +7,21 @@ import {useState, useEffect} from 'react'
 import {updateUser} from '../components/apiCalls'
 import {useSelector, useDispatch} from 'react-redux'
 import {publicRequest} from '../components/requestMethods'
+import {format} from 'timeago.js' 
+
 const Edit = (props) => { 
   
-  const [user, setUser] = useState([])
+  const [singleUser, setUser] = useState([])
   const [newInfo, setNewInfo] = useState({})
   const [imgg, setImgg] = useState('')
   const [id, setId] = useState('')
-  
   
   const {error, isFetching} = useSelector(state => state.user)
   const dispatch = useDispatch()
   
   const handleClick = (e) => {
     e.preventDefault()
-    updateUser({dispatch, id: props.id, newInfo})
+    updateUser({dispatch, id: item.id, newInfo})
   }
   
   const handleChange = (event) => {
@@ -34,23 +35,22 @@ const Edit = (props) => {
     const getUser = async () => {
       try {
         const res = await publicRequest.get(`/users/${props.id}`)
-        setUser(res.data)
-        console.log(res.data)
-        console.log(user)
+        singleUser.push(res.data)
       } catch (e) {
         console.log(e)
       }
     }
     getUser()
   }, [])
+
   
   return ( 
       <section className={styles.edit}>
        <div className={styles.container}>
-       {user.map((item) => (
-         <>
+       {singleUser.map((item) => (
+        <>
         <div className={styles.heading_wrapper}>
-          <p className={styles.heading}>Viewing <span>{props.fullname}</span></p>
+          <p className={styles.heading}>{item.username}</p>
           <Link href="/create-user">
             <a className={styles.create_btn}>Create User </a>
           </Link>
@@ -58,7 +58,7 @@ const Edit = (props) => {
         <div class={styles.wrapper}>
            <div class={styles.user_details}>
             <div className={styles.user_info}>
-              <img src={avatar.src} alt={item.name} className={styles.user_img} height="50" width="50" />
+              <img src={avatar.src} alt={item.username} className={styles.user_img} height="50" width="50" />
               <div className={styles.name_wrapper} >
                 <p className={styles.user_name}>{item.fullname}</p>
                 <p className={styles.job}>{item.username}</p>
@@ -68,11 +68,11 @@ const Edit = (props) => {
               <p className={styles.subheading}>Account Details</p>
               <div className={styles.item}>
                 <FaUser className={styles.icon} />
-                <p>{props.username}</p>
+                <p>{item.username}</p>
               </div>
               <div className={styles.item}>
                 <FaCalendar className={styles.icon} />
-                <p>{props.date}</p>
+                <p>{format(item.createdAt)}</p>
               </div>
             </div>
             <div className={styles.items}>
@@ -83,7 +83,7 @@ const Edit = (props) => {
               </div>
               <div className={styles.item}>
                 <FaEnvelope className={styles.icon} />
-                <p>{props.email}</p>
+                <p>{item.email}</p>
               </div>
               <div className={styles.item}>
                 <FaMapMarker className={styles.icon} />
@@ -99,15 +99,15 @@ const Edit = (props) => {
             <form className={styles.edit_form}>
               <div className={styles.form_group}>
                 <label htmlFor="username">Username</label>
-                <input type="text" placeholder={props.username} name="username" onChange={() => handleChange(event)}/>
+                <input type="text" placeholder={item.username} name="username" onChange={() => handleChange(event)}/>
               </div>
               <div className={styles.form_group}>
                 <label htmlFor="fullname">Full Name</label>
-                <input type="text" placeholder={props.fullname} name="fullname" onChange={() => handleChange(event)} />
+                <input type="text" placeholder={item.fullname} name="fullname" onChange={() => handleChange(event)} />
               </div>
               <div className={styles.form_group}>
                 <label htmlFor="email">Email</label>
-                <input type="email" placeholder={props.email} name="email" onChange={() => handleChange(event)} />
+                <input type="email" placeholder={item.email} name="email" onChange={() => handleChange(event)} />
               </div>
               <div className={styles.form_group}>
                 <label htmlFor="phone">Phone</label>
@@ -123,7 +123,7 @@ const Edit = (props) => {
           </div>
         </div>
         </>
-        ))} 
+        )).slice(0, 1)} 
        </div>
       </section>
     ); 
@@ -138,7 +138,6 @@ export async function getServerSideProps(context) {
       username: context.query.username,
       fullname: context.query.fullname,
       email: context.query.email,
-      date: context.query.date,
     },
   };
 }
